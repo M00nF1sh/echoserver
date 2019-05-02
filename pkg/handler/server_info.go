@@ -1,4 +1,4 @@
-package server
+package handler
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ type serverInfo struct {
 }
 
 // PrintServerInfo prints server information
-func (svr *Server) PrintServerInfo(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) PrintServerInfo(w http.ResponseWriter, r *http.Request) {
 	hostname, _ := os.Hostname()
 	var netAddrs []string
 	addrs, _ := net.InterfaceAddrs()
@@ -25,7 +25,7 @@ func (svr *Server) PrintServerInfo(w http.ResponseWriter, r *http.Request) {
 
 	info := serverInfo{
 		Hostname: hostname,
-		Port:     svr.Port,
+		Port:     h.Port,
 		NetAddrs: netAddrs,
 	}
 	payload, _ := json.MarshalIndent(info, "", "    ")

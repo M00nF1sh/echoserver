@@ -1,4 +1,4 @@
-package server
+package handler
 
 import (
 	"encoding/json"
@@ -14,7 +14,7 @@ type requestInfo struct {
 }
 
 // PrintRequestInfo prints request information
-func (svr *Server) PrintRequestInfo(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) PrintRequestInfo(w http.ResponseWriter, r *http.Request) {
 	info := requestInfo{
 		Host:       r.Host,
 		URL:        r.URL.Path,
